@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
+
 class ListContacts extends Component {
   static propTypes = {
     contacts: PropTypes.array.isRequired,
@@ -19,7 +20,7 @@ class ListContacts extends Component {
   }
   render() {
     const { query } = this.state
-    const { contacts, onDeleteContact } = this.props 
+    const { contacts, onDeleteContact, onNavigate } = this.props 
 
     const showingContacts = query === ''
       ? contacts
@@ -31,6 +32,7 @@ class ListContacts extends Component {
       <div className='list-contacts'>
         <div className='list-contacts-top'>
           <input className='search-contacts' type='text' placeholder='Search Contacts' value={query} onChange={(event) => this.updateQuery(event.target.value)}/>
+          <a href='#create' onclick={onNavigate} className='add-contact'>Add Contact</a>
         </div>
         {showingContacts.length !== contacts.length && (
           <div className='showing-contacts'>
